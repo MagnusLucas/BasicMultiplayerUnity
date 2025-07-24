@@ -17,7 +17,10 @@ partial struct NetcodePlayerInputSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (RefRW<NetcodePlayerInput> netcodePlayerInput in SystemAPI.Query<RefRW<NetcodePlayerInput>>().WithAll<GhostOwnerIsLocal>()){
+        foreach ((
+            RefRW<NetcodePlayerInput> netcodePlayerInput, 
+            RefRW<MyValue> myValue) 
+            in SystemAPI.Query<RefRW<NetcodePlayerInput>, RefRW<MyValue>>().WithAll<GhostOwnerIsLocal>()){
 
             float2 inputVector = new float2();
 
@@ -32,6 +35,12 @@ partial struct NetcodePlayerInputSystem : ISystem
             }
             if (Input.GetKey(KeyCode.A)) {
                 inputVector.x += 1f;
+            }
+
+
+            if (Input.GetKey(KeyCode.V)) {
+                myValue.ValueRW.value = UnityEngine.Random.Range(100, 200);
+                Debug.Log("New player value: " +  myValue.ValueRW.value);
             }
 
             netcodePlayerInput.ValueRW.inputVector = inputVector;
