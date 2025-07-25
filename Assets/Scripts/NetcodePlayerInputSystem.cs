@@ -30,18 +30,14 @@ partial struct NetcodePlayerInputSystem : ISystem
             if (Input.GetKey(KeyCode.S)) {
                 inputVector.y -= 1f;
             }
-            if (Input.GetKey(KeyCode.D)) {
+            if (Input.GetKey(KeyCode.A)) {
                 inputVector.x -= 1f;
             }
-            if (Input.GetKey(KeyCode.A)) {
+            if (Input.GetKey(KeyCode.D)) {
                 inputVector.x += 1f;
             }
 
 
-            if (Input.GetKey(KeyCode.V)) {
-                myValue.ValueRW.value = UnityEngine.Random.Range(100, 200);
-                Debug.Log("New player value: " +  myValue.ValueRW.value);
-            }
 
             netcodePlayerInput.ValueRW.inputVector = inputVector;
         }
