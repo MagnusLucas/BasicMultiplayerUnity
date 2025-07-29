@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.NetCode;
 using Unity.Transforms;
+using UnityEngine;
 
 [UpdateInGroup(typeof(PredictedSimulationSystemGroup))]
 partial struct NetcodePlayerMovementSystem : ISystem

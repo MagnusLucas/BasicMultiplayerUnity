@@ -2,6 +2,7 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.NetCode;
+using Unity.Transforms;
 using UnityEngine;
 
 [UpdateInGroup(typeof(GhostInputSystemGroup))]
@@ -15,8 +16,8 @@ partial struct NetcodePlayerInputSystem : ISystem
     }
 
     [BurstCompile]
-    public void OnUpdate(ref SystemState state)
-    {
+    public void OnUpdate(ref SystemState state) {
+        Debug.Log("Updates");
         foreach ((
             RefRW<NetcodePlayerInput> netcodePlayerInput, 
             RefRW<MyValue> myValue) 
@@ -36,8 +37,6 @@ partial struct NetcodePlayerInputSystem : ISystem
             if (Input.GetKey(KeyCode.D)) {
                 inputVector.x += 1f;
             }
-
-
 
             netcodePlayerInput.ValueRW.inputVector = inputVector;
         }
