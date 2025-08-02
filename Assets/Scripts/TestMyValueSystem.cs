@@ -5,7 +5,7 @@ using UnityEngine;
 partial struct TestMyValueSystem : ISystem
 {
 
-    [BurstCompile]
+    //[BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         foreach ((RefRO<MyValue> myValue,
